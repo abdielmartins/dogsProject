@@ -7,7 +7,7 @@ import { UserContext } from "../../context/userContext";
 import styles from "./Header.module.css";
 
 const Header = () => {
-  const data = useContext(UserContext);
+  const { data, userLogout } = useContext(UserContext);
 
   return (
     <header className={styles.header}>
@@ -17,7 +17,8 @@ const Header = () => {
         </Link>
         {data ? (
           <Link className={styles.login} to="/account">
-            {data.user}
+            {data.nome}
+            <button onClick={userLogout}>Sair</button>
           </Link>
         ) : (
           <Link className={styles.login} to="/login">
