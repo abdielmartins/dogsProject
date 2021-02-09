@@ -5,6 +5,11 @@ const schema = {
     regex: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     message: "Preencha um e-mail válido",
   },
+  password: {
+    regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+    message:
+      "A senha deve conter: 1 letra maiúscula, 1 letra minúscula, 1 número e no mínimo 8 caracteres.",
+  },
 };
 
 const useForm = (type) => {
@@ -12,7 +17,7 @@ const useForm = (type) => {
   const [error, setError] = useState(null);
 
   function validate(value) {
-    if (type) return true;
+    if (type === false) return true;
     if (value.length === 0) {
       setError("Preencha um valor");
       return false;
